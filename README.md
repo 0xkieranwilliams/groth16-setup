@@ -1,13 +1,11 @@
 # Groth16 Setup
 
-### Project starts with circuit.circom MiMC5 circuit
+#### Project starts with circuit.circom MiMC5 circuit
 
 
 ## Phase 1: Ceremony - Powers of Tau
 
-Starting the ceremony by creating a new ceremony file 
-
---> 
+### Starting the ceremony by creating a new ceremony file 
 
 Name of the ceremony: powersoftau,
 
@@ -21,9 +19,7 @@ Name of the ceremony file: ceremony_0000.ptau
 
 ---
 
-Start adding randomness to the ceremony file. In practice this is done by 3rd part contributors (no one should have knowledge of what they have contributed and these input contributions should be discarded)
-
--->
+### Start adding randomness to the ceremony file. In practice this is done by 3rd part contributors (no one should have knowledge of what they have contributed and these input contributions should be discarded)
 
 Input ceremony file: ceremony_0000.ptau
 
@@ -40,9 +36,7 @@ Generate new ceremony file with an entropy input contribution: ceremony_0002.pta
 
 ---
 
-Verifying a ceremony file to ensure that it is not corrupted before allowing additional randomness to be added
-
----> 
+### Verifying a ceremony file to ensure that it is not corrupted before allowing additional randomness to be added
 
 Input ceremony file to verify : ceremony_0002.ptau
 
@@ -54,9 +48,7 @@ Valid if response is: "Powers of Tau Ok!"
 
 ## Phase 2: Preparing the ZKey 
 
-Prepare the last recieved ceremony file ready for phase 2 of Groth16 Setup
-
--->
+### Prepare the last recieved ceremony file ready for phase 2 of Groth16 Setup
 
 Input ceremony file: ceremony_0002.ptau
 
@@ -66,9 +58,7 @@ Output prepared for phase2 ceremony file: ceremony_final.ptau
 
 ---
 
-Verify the prepared final ceremony file
-
----> 
+### Verify the prepared final ceremony file 
 
 Input ceremony file to verify : ceremony_final.ptau
 
@@ -78,9 +68,7 @@ Valid if response is: "Powers of Tau Ok!"
 
 ---
 
-Compile the circom circuit that includes the MiMC5 hashing algorithm
-
--->
+### Compile the circom circuit that includes the MiMC5 hashing algorithm
 
 Compile the circuit as a rank 1 constraint system and compile it out to web assembly
 
@@ -88,9 +76,7 @@ Compile the circuit as a rank 1 constraint system and compile it out to web asse
 
 ---
 
-Feed the MiMC5 hashing circuit to the groth16 ceremony file
-
--->
+### Feed the MiMC5 hashing circuit to the groth16 ceremony file
 
 Input r1cs file: circuit.r1cs
 
@@ -102,9 +88,7 @@ Output zkey proving key file: setup_0000.zkey
 
 ---
 
-Contribute randomness to the zkey file
-
--->
+### Contribute randomness to the zkey file
 
 Input zkey file: zkey_0000.zkey
 
@@ -114,9 +98,7 @@ Generate new zkey file with an entropy input: setup_final.zkey
 
 ---
 
-Verify the zkey file to ensure it is not corrupted
-
--->
+### Verify the zkey file to ensure it is not corrupted
 
 Input the circuit rank 1 constraint system file: circuit.r1cs 
 
@@ -136,9 +118,7 @@ Create the input.json file for the circuit: inputs (x, k)
 
 ---
 
-Constructing the proof 
-
---> 
+### Constructing the proof 
 
 Input inputs file for the circuit: inputs.json
 
@@ -157,9 +137,7 @@ Output the public file containing the circuit output (hash value from the circui
 
 ## Porting the verification ability onto the blockchain
 
-Now we need to put a verifier on the blockchain so that we can validate proofs to be true or false 
-
--->
+### Now we need to put a verifier on the blockchain so that we can validate proofs to be true or false 
 
 Input final zkey: setup_final.zkey
  
@@ -169,13 +147,11 @@ Output solidity verifier file: Verifier.sol
 
 ---
 
-Deploy Verifier.sol contract on EVM blockchain
+### Deploy Verifier.sol contract on EVM blockchain
 
 ---
 
-To generate call data for verification by the Verifier smart contract
-
---> 
+### To generate call data for verification by the Verifier smart contract
 
 Input the public output file containing the hashed output data from the MiMC5 circuit: public.json
 
