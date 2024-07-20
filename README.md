@@ -1,6 +1,6 @@
 # Groth16 Setup
 
-Project starts with circuit.circom MiMC5 circuit
+### Project starts with circuit.circom MiMC5 circuit
 
 
 ## Phase 1: Ceremony - Powers of Tau
