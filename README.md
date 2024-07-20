@@ -17,7 +17,7 @@ Name of the ceremony file: ceremony_0000.ptau
 
     snarkjs powersoftau new bn128 12 ceremony_0000.ptau
 
----
+
 
 ### Start adding randomness to the ceremony file. In practice this is done by 3rd part contributors (no one should have knowledge of what they have contributed and these input contributions should be discarded)
 
@@ -34,7 +34,7 @@ Generate new ceremony file with an entropy input contribution: ceremony_0002.pta
 
     snarkjs powersoftau contribute ceremony ceremony_0001.ptau ceremony_0002.ptau -v
 
----
+
 
 ### Verifying a ceremony file to ensure that it is not corrupted before allowing additional randomness to be added
 
@@ -56,7 +56,7 @@ Output prepared for phase2 ceremony file: ceremony_final.ptau
 
     snarkjs powersoftau prepare phase2 ceremony_0002.ptau ceremony_final.ptau -v
 
----
+
 
 ### Verify the prepared final ceremony file 
 
@@ -66,7 +66,7 @@ Valid if response is: "Powers of Tau Ok!"
         
     snarkjs powersoftau verify ceremony_final.ptau
 
----
+
 
 ### Compile the circom circuit that includes the MiMC5 hashing algorithm
 
@@ -74,7 +74,7 @@ Compile the circuit as a rank 1 constraint system and compile it out to web asse
 
     circom circuit.circom --r1cs --wasm
 
----
+
 
 ### Feed the MiMC5 hashing circuit to the groth16 ceremony file
 
@@ -86,7 +86,7 @@ Output zkey proving key file: setup_0000.zkey
 
     snarkjs groth16 setup circuit.r1cs ceremony_final.ptau setup_0000.zkey
 
----
+
 
 ### Contribute randomness to the zkey file
 
@@ -96,7 +96,7 @@ Generate new zkey file with an entropy input: setup_final.zkey
 
     snarkjs zkey contribute setup_0000.zkey setup_final.zkey
 
----
+
 
 ### Verify the zkey file to ensure it is not corrupted
 
@@ -116,7 +116,7 @@ Valid if response is: "ZKey Ok!"
 
 Create the input.json file for the circuit: inputs (x, k)
 
----
+
 
 ### Constructing the proof 
 
@@ -145,13 +145,13 @@ Output solidity verifier file: Verifier.sol
 
         snarkjs zkey export solidityverifier setup_final.zkey Verifier.sol
 
----
+
 
 ### Deploy Verifier.sol contract on EVM blockchain
 
----
 
-### To generate call data for verification by the Verifier smart contract
+
+### Generate call data for verification by the Verifier smart contract
 
 Input the public output file containing the hashed output data from the MiMC5 circuit: public.json
 
